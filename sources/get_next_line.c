@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 19:09:54 by jg                #+#    #+#             */
-/*   Updated: 2022/01/29 20:03:24 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/01 17:32:54 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_read(int fd, char *buf, char *rem)
 			return (NULL);
 		}
 		buf[i] = '\0';
-		rem = ft_strjoin(rem, buf);
+		rem = ft_strjoin_gnl(rem, buf);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
@@ -95,25 +95,3 @@ char	*get_next_line(int fd)
 	rem = ft_rem(rem);
 	return (line);
 }
-/*
-#include <fcntl.h>
-#include <stdio.h>
-
-int	main(void)
-{
-	int		fd;
-	char	*str;
-
-	str = "key";
-	fd = open("text.txt", O_RDONLY);
-	while (str)
-	{
-		str = get_next_line(fd);
-		if (str == NULL)
-			break ;
-		printf("%s", str);
-		free(str);
-	}
-	return (0);
-}
-*/

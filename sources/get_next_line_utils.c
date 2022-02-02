@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 15:28:25 by jg                #+#    #+#             */
-/*   Updated: 2022/01/29 20:05:21 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/01 17:32:20 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,6 @@ char	*ft_strcpy(char *dest, char *src)
 	dest[i] = '\0';
 	return (dest);
 }
-
-// char	*ft_strchr(char *s, int c)
-// {
-// 	char	sym;
-
-// 	sym = (char) c;
-// 	while (*s != '\0')
-// 	{
-// 		s++;
-// 		if (*s == sym)
-// 			return ((char *)s);
-// 	}
-// 	return (NULL);
-// }
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s[i] != '\0')
-// 		i++;
-// 	return (i);
-// }
 
 char	*ft_strjoin_gnl(char *s1, char const *s2)
 {
@@ -79,19 +55,3 @@ char	*ft_strjoin_gnl(char *s1, char const *s2)
 	str[i] = '\0';
 	return (str);
 }
-
-// void	*ft_calloc(size_t count, size_t size)
-// {
-// 	void			*mem;
-// 	unsigned char	*ptr;
-// 	int				i;
-
-// 	mem = malloc(count * size);
-// 	if (mem == NULL)
-// 		return (NULL);
-// 	i = size * count;
-// 	ptr = (unsigned char *)mem;
-// 	while (i--)
-// 		*ptr++ = '\0';
-// 	return (mem);
-// }

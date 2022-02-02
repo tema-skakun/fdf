@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:03 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/01/29 20:06:00 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:28:51 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,20 @@
 
 # include "../libft/libft.h"
 
+typedef struct s_xyz
+{
+	int	x;
+	int	y;
+	int	z;
+	int	width;
+	int	height;
+}				t_xyz;
+
 int		parser(int argc, char **argv);
 int		ft_errors(int i);
 
-char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *s1, char const *s2);
 char	*ft_strcpy(char *dest, char *src);
+char	*get_next_line(int fd);
 
 #endif
