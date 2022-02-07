@@ -5,104 +5,72 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/21 16:03:16 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/02 12:49:21 by jg               ###   ########.fr       */
+/*   Created: 2022/02/03 17:31:34 by jg                #+#    #+#             */
+/*   Updated: 2022/02/07 09:43:58 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	ft_free(char **p_str)
-{
-	int	i;
+// int	check_strings(int fd)
+// {
+// 	char	*str;
+// 	int		len[2];
 
-	i = 0;
-	if (p_str != NULL)
-	{
-		while (p_str[i])
-			free(p_str[i++]);
-		free(p_str);
-	}
-}
+// 	str = get_next_line(fd);
+// 	len[0] = len_space(str);
+// 	while (str)
+// 	{
+// 		str = get_next_line(fd);
+// 		if (str == NULL)
+// 			break ;
+// 		len[1] = len_space(str);
+// 		free(str);
+// 		if (len[0] != len[1])
+// 			return (1);
+// 	}
+// 	return (0);
+// }
 
-int	ft_getnbr(char *str)
-{
-	size_t	i;
-	int		result;
-
-	result = 0;
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while ((str[i] >= '0') && (str[i] <= '9'))
-	{
-		result = (result * 10) + (str[i] - '0');
-		i++;
-	}
-	if (str[0] == '-')
-		result = result * (-1);
-	return (result);
-}
-
-int	len_space(char *str)
-{
-	int	i;
-	int	space;
-
-	i = 0;
-	space = 0;
-	while (str[i])
-	{
-		// if (str[i] == 32 && str[i + 1] != 32)
-		// 	space++;
-		if (str[i] == 32 && ft_isdigit(str[i + 1]))
-			space++;
-		//перенос каретки или конец строки после пробела не всчёт
-		// if (str[i] == 32 && str[i + 1] == '\n')
-		// 	space--;
-		// if (str[i] == 32 && str[i + 1] == '\0')
-		// 	space--;
-		i++;
-	}
-	return (space);
-}
-
-int	check_strings(int fd)
+void	pre_parser(int fd, t_xyz *xyz)
 {
 	char	*str;
-	int		first;
-	int		next;
+	char	**points;
+	int		width;
 
-	str = get_next_line(fd);
-	first = len_space(str);
-	printf("first = %d\n", first);
-	printf("%s", str);
-	while (str)
+	xyz->width = 0;
+	xyz->height = 0;
+	while (1)
 	{
 		str = get_next_line(fd);
 		if (str == NULL)
 			break ;
-		next = len_space(str);
-		printf("next = %d\n", next);
-		printf("%s", str);
+		points = ft_split(str, ' ');
 		free(str);
-		if (first != next)
-			return (1);
+		width = 0;
+		while (points[width])
+			width++;
+		ft_free(points);
+		xyz->width = width;
+		printf("%d\n", width);
 	}
-	printf("\nok\n");
-	return (0);
 }
 
-int	parser(int argc, char **argv)
+int	parser(char *av, t_xyz *xyz)
 {
-	int		fd;
+	int	fd;
 
-	if (argc != 2)
-		return (ft_errors(1));
-	fd = open(argv[1], O_RDONLY);
+	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		ft_errors(4);
-	if (check_strings(fd))
-		return (ft_errors(2));
+		ft_errors(3);
+	pre_parser(fd, xyz);
+	if (close(fd) == -1)
+		ft_errors(3);
+	// fd = open(av, O_RDONLY);
+	// if (fd == -1)
+	// 	ft_errors(3);
+	// points_parser(fd);
+	// if (close(fd) == -1)
+	// 	ft_errors(3);
 	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+         #
+#    By: jg <jg@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/15 15:51:18 by fdarkhaw          #+#    #+#              #
-#    Updated: 2022/01/29 19:59:31 by fdarkhaw         ###   ########.fr        #
+#    Updated: 2022/02/07 14:11:13 by jg               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,20 @@ NAME		= fdf
 
 INC_DIR		= ./includes/
 LIBFT_DIR	= ./libft/
+LIBFT		= libft.a
+
+# INC_MINILIBX = -I minilibx
+# LINK_MINILIBX = -L minilibx -lmlx
+# MINILIBX = $(INC_MINILIBX) $(LINK_MINILIBX)
+# MINILIBX = ./minilibx/libmlx.a
 
 SRCS		=	./sources/main.c\
-				./sources/parser.c\
+				./sources/validation_check.c\
 				./sources/errors.c\
 				./sources/get_next_line.c\
 				./sources/get_next_line_utils.c\
-
-LIBFT		= libft.a
+				./sources/parser.c\
+				./sources/struct.c\
 		
 OBJ			= $(SRCS:.c=.o)
 DEP			= $(SRCS:.c=.d)

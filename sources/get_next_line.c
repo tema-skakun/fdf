@@ -6,7 +6,7 @@
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 19:09:54 by jg                #+#    #+#             */
-/*   Updated: 2022/02/01 17:32:54 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/03 12:59:37 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*ft_read(int fd, char *buf, char *rem)
 		rem = (char *)ft_calloc(1, sizeof(char));
 	while (i)
 	{
-		i = read(fd, buf, 10);
+		i = read(fd, buf, 3000);
 		if (i < 0)
 		{
 			free(buf);
@@ -85,7 +85,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buf = (char *)ft_calloc(10 + 1, sizeof(char));
+	buf = (char *)ft_calloc(3000 + 1, sizeof(char));
 	rem = ft_read(fd, buf, rem);
 	if (buf)
 		free(buf);
