@@ -6,7 +6,7 @@
 /*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:03 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/07 16:48:15 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:04:39 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# include "../libft/libft.h"
-// # include <mlx.h>
+# include <mlx.h>
 
 typedef struct s_xyz
 {
