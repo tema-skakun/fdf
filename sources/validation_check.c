@@ -6,7 +6,7 @@
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:03:16 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/04 16:14:37 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/10 13:02:27 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	check_strings(int fd)
 
 	str = get_next_line(fd);
 	len[0] = len_space(str);
+	free(str);
 	while (str)
 	{
 		str = get_next_line(fd);

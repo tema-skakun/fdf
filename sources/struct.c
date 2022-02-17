@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 09:35:20 by jg                #+#    #+#             */
-/*   Updated: 2022/02/07 16:47:45 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/09 16:05:34 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_xyz	*new_struct(char *av)
 	xyz->r = 1;
 	xyz->g = 1;
 	xyz->b = 1;
-	xyz->id = mlx_init();
-	xyz->win = mlx_new_window(xyz->id, 100, 100, av);//(xyz->id, WIN_WIDTH, WIN_HEIGHT, av);
+	// xyz->id = mlx_init();
+	// xyz->win = mlx_new_window(xyz->id, 100, 100, av);//(xyz->id, WIN_WIDTH, WIN_HEIGHT, av);
 	return (xyz);
 }

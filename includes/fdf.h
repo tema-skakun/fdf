@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:03 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/07 16:48:15 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/17 13:07:10 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,25 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <mlx.h>
+# include <math.h>
 
 # include "../libft/libft.h"
-// # include <mlx.h>
+
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*win;
+	int		flag;
+}				t_vars;
 
 typedef struct s_xyz
 {
@@ -47,11 +63,21 @@ typedef struct s_xyz
 	int		win;
 }				t_xyz;
 
+typedef struct s_map
+{
+	int	z;
+	int	rgb;
+	int	len;
+}				t_map;
+
 int		validation_check(int argc, char **argv);
 t_xyz	*new_struct(char *av);
 int		ft_errors(int i);
 void	ft_free(char **p_str);
-int		parser(char *av, t_xyz *xyz);
+void	ft_free_map(t_map **map, int *num);
+int		parser(char *av);
+int		len_space(char *str);
+void	draw_line(void);
 
 char	*ft_strjoin_gnl(char *s1, char const *s2);
 char	*ft_strcpy(char *dest, char *src);

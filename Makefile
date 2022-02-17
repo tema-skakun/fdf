@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+         #
+#    By: jg <jg@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/15 15:51:18 by fdarkhaw          #+#    #+#              #
-#    Updated: 2022/02/07 16:49:16 by fdarkhaw         ###   ########.fr        #
+#    Updated: 2022/02/17 13:04:26 by jg               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS		=	./sources/main.c\
 				./sources/get_next_line.c\
 				./sources/get_next_line_utils.c\
 				./sources/parser.c\
-				./sources/struct.c\
+				./sources/draw.c\
+				
 		
 OBJ			= $(SRCS:.c=.o)
 DEP			= $(SRCS:.c=.d)
@@ -39,15 +40,28 @@ CC			= cc
 
 all			: $(NAME)
 
+# __to_launch_at_school_21__
+# %.o : %.c
+# 		$(CC) $(CFLAGS) -Imlx -c $< -o $@
+
+# $(NAME)		: $(OBJ)
+# 		$(CC) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+%.o : %.c
+		$(CC) $(CFLAGS) -Iminilibx_macos -I$(INC_DIR) -c $< -o $@ -MD
+
+# %.o : %.c
+# 		$(CC) -c $(CFLAGS) -I$(INC_DIR) $< -o $@ -MD
+
 $(NAME)		: $(OBJ)
 		make -C $(LIBFT_DIR)
 		make bonus -C $(LIBFT_DIR)
-		$(CC) -o $(NAME) $(CFLAGS) -I$(INC_DIR) $(OBJ) $(LIBFT_DIR)$(LIBFT)
-		$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+		$(CC) $(OBJ) -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_DIR)$(LIBFT)
 
-%.o : %.c
-		$(CC) -c $(CFLAGS) -I$(INC_DIR) $< -o $@ -MD
-		$(CC) $(CFLAGS) -Imlx -c $< -o $@
+# $(NAME)		: $(OBJ)
+# 		make -C $(LIBFT_DIR)
+# 		make bonus -C $(LIBFT_DIR)
+# 		$(CC) -o $(NAME) $(CFLAGS) -I$(INC_DIR) $(OBJ) $(LIBFT_DIR)$(LIBFT)
 		
 clean:
 		make -C $(LIBFT_DIR) clean

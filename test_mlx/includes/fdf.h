@@ -6,7 +6,7 @@
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:03 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/09 05:55:11 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/17 10:35:43 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <mlx.h>
+# include <math.h>
 
 int				create_trgb(int t, int r, int g, int b);
 int				get_t(int trgb);

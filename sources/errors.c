@@ -6,7 +6,7 @@
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 20:30:54 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/07 08:45:40 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/11 16:55:23 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,18 @@ void	ft_free(char **p_str)
 		while (p_str[i])
 			free(p_str[i++]);
 		free(p_str);
+	}
+}
+
+void	ft_free_map(t_map **map, int *num)
+{
+	int	i;
+
+	if (map != NULL)
+	{
+		i = 0;
+		while (i < num[1])
+			free(map[i++]);
+		free(map);
 	}
 }
