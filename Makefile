@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jg <jg@student.42.fr>                      +#+  +:+       +#+         #
+#    By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/15 15:51:18 by fdarkhaw          #+#    #+#              #
-#    Updated: 2022/02/17 13:04:26 by jg               ###   ########.fr        #
+#    Updated: 2022/02/21 09:44:08 by fdarkhaw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,21 +47,15 @@ all			: $(NAME)
 # $(NAME)		: $(OBJ)
 # 		$(CC) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
+# __to_launch_at_home__
 %.o : %.c
 		$(CC) $(CFLAGS) -Iminilibx_macos -I$(INC_DIR) -c $< -o $@ -MD
-
-# %.o : %.c
-# 		$(CC) -c $(CFLAGS) -I$(INC_DIR) $< -o $@ -MD
 
 $(NAME)		: $(OBJ)
 		make -C $(LIBFT_DIR)
 		make bonus -C $(LIBFT_DIR)
-		$(CC) $(OBJ) -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_DIR)$(LIBFT)
-
-# $(NAME)		: $(OBJ)
-# 		make -C $(LIBFT_DIR)
-# 		make bonus -C $(LIBFT_DIR)
-# 		$(CC) -o $(NAME) $(CFLAGS) -I$(INC_DIR) $(OBJ) $(LIBFT_DIR)$(LIBFT)
+		$(CC) $(OBJ) -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit\
+		-o $(NAME) $(LIBFT_DIR)$(LIBFT)
 		
 clean:
 		make -C $(LIBFT_DIR) clean
