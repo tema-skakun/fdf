@@ -6,7 +6,7 @@
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:31:34 by jg                #+#    #+#             */
-/*   Updated: 2022/02/16 15:00:40 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/18 18:03:07 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	print_map(t_map **map, int *num)
 	int		i, j;
 
 	i = 0;
-	while (i < num[1])
+	while (i < num[0])
 	{
 		j = 0;
-		while (j < num[0])
+		while (j < num[1])
 		{
 			printf("%d,%d ", map[i][j].z, map[i][j].rgb);
 			j++;
@@ -82,23 +82,22 @@ void	pre_alloc(int fd, int *num)
 	char	*str;
 
 	str = get_next_line(fd);
-	num[0] = len_space(str);
+	num[1] = len_space(str);
 	free(str);
-	num[1] = 1;
+	num[0] = 1;
 	while (1)
 	{
 		str = get_next_line(fd);
 		if (str == NULL)
 			break ;
-		num[1]++;
+		num[0]++;
 		free(str);
 	}
 }
 
-int	parser(char *av)
+int	parser(char *av, int *num)
 {
 	int		fd;
-	int		num[2];
 	t_map	**map;
 
 	fd = open(av, O_RDONLY);

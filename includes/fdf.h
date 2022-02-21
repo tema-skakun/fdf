@@ -6,7 +6,7 @@
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:03 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/17 13:07:10 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/18 17:49:06 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ t_xyz	*new_struct(char *av);
 int		ft_errors(int i);
 void	ft_free(char **p_str);
 void	ft_free_map(t_map **map, int *num);
-int		parser(char *av);
+int		parser(char *av, int *num);
 int		len_space(char *str);
-void	draw_line(void);
+void	draw_line(int *num);
 
 char	*ft_strjoin_gnl(char *s1, char const *s2);
 char	*ft_strcpy(char *dest, char *src);
