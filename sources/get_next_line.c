@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 19:09:54 by jg                #+#    #+#             */
-/*   Updated: 2022/02/10 16:12:00 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/21 14:20:19 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	buf = (char *)ft_calloc(3000 + 1, sizeof(char));
+	// if (!buf) дописать
+	// 	ft_error(3);
 	rem = ft_read(fd, buf, rem);
 	if (buf)
 		free(buf);

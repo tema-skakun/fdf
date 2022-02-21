@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:51:33 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/18 17:48:13 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/21 19:54:37 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int	main(int argc, char **argv)
 {
-	int	num[2];
+	t_data	data;
 
-	if (validation_check(argc, argv))
+	if (validation_check(argc, argv, &data))
 		exit(1);
-	parser(argv[1], num);
+	parser(argv[1], &data);
 	printf("\nok\n");
-	draw_line(num);
-	exit(0);
+	draw(&data, argv[1]);
 	return (0);
 }

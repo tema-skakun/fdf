@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 20:30:54 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/18 18:08:41 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/21 18:05:43 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ void	ft_free(char **p_str)
 	}
 }
 
-void	ft_free_map(t_map **map, int *num)
+void	ft_free_data(t_data *data)
 {
 	int	i;
 
-	if (map != NULL)
+	if (data->map != NULL)
 	{
 		i = 0;
-		while (i < num[0])
-			free(map[i++]);
-		free(map);
+		while (i < data->col)
+			free(data->map[i++]);
+		free(data->map);
 	}
 }

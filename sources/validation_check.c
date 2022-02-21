@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:03:16 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/10 13:02:27 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/21 18:29:34 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,32 @@ int	len_space(char *str)
 	return (space);
 }
 
-int	check_strings(int fd)
+int	check_strings(int fd, t_data *data)
 {
-	char	*str;
-	int		len[2];
+	char	*line;
+	int		len[3];
 
-	str = get_next_line(fd);
-	len[0] = len_space(str);
-	free(str);
-	while (str)
+	line = get_next_line(fd);
+	len[0] = len_space(line);
+	free(line);
+	len[2] = 1;
+	while (1)
 	{
-		str = get_next_line(fd);
-		if (str == NULL)
+		line = get_next_line(fd);
+		if (line == NULL)
 			break ;
-		len[1] = len_space(str);
-		free(str);
+		len[1] = len_space(line);
+		free(line);
+		len[2]++;
 		if (len[0] != len[1])
 			return (1);
+		data->col = len[1];//посчитал кол-во  столбцов
+		data->str = len[2];//посчитал кол-во  строк
 	}
 	return (0);
 }
 
-int	validation_check(int argc, char **argv)
+int	validation_check(int argc, char **argv, t_data *data)
 {
 	int		fd;
 
@@ -96,7 +100,7 @@ int	validation_check(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_errors(3);
-	if (check_strings(fd))
+	if (check_strings(fd, data))
 		return (ft_errors(2));
 	if (close(fd) == -1)
 		ft_errors(3);

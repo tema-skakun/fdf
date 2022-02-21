@@ -6,7 +6,7 @@
 #    By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/15 15:51:18 by fdarkhaw          #+#    #+#              #
-#    Updated: 2022/02/21 09:44:08 by fdarkhaw         ###   ########.fr        #
+#    Updated: 2022/02/21 19:24:24 by fdarkhaw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,13 +49,14 @@ all			: $(NAME)
 
 # __to_launch_at_home__
 %.o : %.c
-		$(CC) $(CFLAGS) -Iminilibx_macos -I$(INC_DIR) -c $< -o $@ -MD
+		$(CC) $(CFLAGS) -Iminilibx_macos -I $(INC_DIR) -c $< -o $@ -MD
 
 $(NAME)		: $(OBJ)
 		make -C $(LIBFT_DIR)
 		make bonus -C $(LIBFT_DIR)
-		$(CC) $(OBJ) -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit\
+		$(CC) $(OBJ) -fsanitize=address -g -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit\
 		-o $(NAME) $(LIBFT_DIR)$(LIBFT)
+#убить санитайзер
 		
 clean:
 		make -C $(LIBFT_DIR) clean

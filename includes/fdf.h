@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:03 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/18 17:49:06 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/21 19:54:56 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@
 
 # include "../libft/libft.h"
 
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
 typedef struct s_vars
 {
 	void	*mlx;
@@ -37,47 +29,35 @@ typedef struct s_vars
 	int		flag;
 }				t_vars;
 
-typedef struct s_xyz
-{
-	int		x;
-	int		y;
-	int		z;
-	int		width;
-	int		height;
-	int		project;
-	float	theta;
-	float	phi;
-	float	psi;
-	float	scale;
-	int		x_scale;
-	int		y_scale;
-	int		z_scale;
-	float	x_shift;
-	float	y_shift;
-	float	z_shift;
-	int		focal_dist;
-	int		r;
-	int		g;
-	int		b;
-	void	*id;
-	int		win;
-}				t_xyz;
-
 typedef struct s_map
 {
+	int	x;
+	int	y;
 	int	z;
 	int	rgb;
-	int	len;
 }				t_map;
 
-int		validation_check(int argc, char **argv);
-t_xyz	*new_struct(char *av);
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		str;
+	int		col;
+	void	*mlx;
+	void	*win;
+	int		flag;
+	t_map	**map;
+}				t_data;
+
+int		validation_check(int argc, char **argv, t_data *data);
 int		ft_errors(int i);
 void	ft_free(char **p_str);
-void	ft_free_map(t_map **map, int *num);
-int		parser(char *av, int *num);
+void	ft_free_data(t_data *data);
+int		parser(char *av, t_data *data);
 int		len_space(char *str);
-void	draw_line(int *num);
+void	draw(t_data *data, char *av);
 
 char	*ft_strjoin_gnl(char *s1, char const *s2);
 char	*ft_strcpy(char *dest, char *src);
