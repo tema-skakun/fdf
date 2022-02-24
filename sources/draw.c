@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 12:55:51 by jg                #+#    #+#             */
-/*   Updated: 2022/02/21 19:56:14 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:21:15 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	close_(int keycode, t_vars *vars)
 	exit (keycode);
 }
 
-void	bresenham(double *x, double *y, t_data *data)
+void	bresenham(int *x, int *y, int color, t_data *data)
 {
-	double	signY;
-	double	signX;
-	double	f;
-	double	X;
-	double	Y;
+	int	signY;
+	int	signX;
+	int	f;
+	int	X;
+	int	Y;
 
 	if ((y[1] - y[0]) < 0)
 		signY = -1;
@@ -45,8 +45,8 @@ void	bresenham(double *x, double *y, t_data *data)
 	f = 0;
 	X = x[0];
 	Y = y[0];
-	my_mlx_pixel_put(data, (int)X, (int)Y, 0x00FF0000);// отобразить точку
-	if (fabs(y[1] - y[0]) < fabs(x[0] - x[1]))
+	my_mlx_pixel_put(data, X, Y, color);// отобразить точку
+	if (abs(y[1] - y[0]) < abs(x[0] - x[1]))
 	{
 		while (X != x[1] || Y != y[1])
 		{
@@ -57,7 +57,7 @@ void	bresenham(double *x, double *y, t_data *data)
 				Y += signY;
 			}
 			X -= signX;
-			my_mlx_pixel_put(data, (int)X, (int)Y, 0x00FF0000);// отобразить точку
+			my_mlx_pixel_put(data, X, Y, color);// отобразить точку
 		}
 	}
 	else
@@ -71,15 +71,62 @@ void	bresenham(double *x, double *y, t_data *data)
 				X -= signX;
 			}
 			Y += signY;
-			my_mlx_pixel_put(data, (int)X, (int)Y, 0x00FF0000);// отобразить точку
+			my_mlx_pixel_put(data, X, Y, color);// отобразить точку
 		}
+	}
+}
+
+void	draw_str(t_data *data)
+{
+	int	x[2];
+	int	y[2];
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->str)
+	{
+		j = 0;
+		while (j < data->col - 1)
+		{
+			x[0] = data->map[i][j].x;
+			y[0] = data->map[i][j].y;
+			x[1] = data->map[i][j + 1].x;
+			y[1] = data->map[i][j].y;
+			bresenham(x, y, data->map[i][j].rgb, data);
+			// printf("str rgb = %d\n", data->map[i][j].rgb);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	draw_col(t_data *data)
+{
+	int	x[2];
+	int	y[2];
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->str - 1)
+	{
+		j = 0;
+		while (j < data->col)
+		{
+			x[0] = data->map[i][j].x;
+			y[0] = data->map[i][j].y;
+			x[1] = data->map[i][j].x;
+			y[1] = data->map[i + 1][j].y;
+			bresenham(x, y, data->map[i][j].rgb, data);
+			j++;
+		}
+		i++;
 	}
 }
 
 void	draw(t_data *data, char *av)
 {
-	double	x[2];
-	double	y[2];
 	t_vars	vars;
 
 	vars.mlx = mlx_init();
@@ -87,12 +134,8 @@ void	draw(t_data *data, char *av)
 	data->img = mlx_new_image(vars.mlx, 1000, 600);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 									&data->line_length, &data->endian);
-	x[0] = 500;
-	y[0] = 100;
-	x[1] = 700;
-	y[1] = 200;
-	// draw_str(data);
-	bresenham(x, y, data);
+	draw_str(data);
+	draw_col(data);
 	mlx_put_image_to_window(vars.mlx, vars.win, data->img, 0, 0);
 	mlx_hook(vars.win, 17, 1L << 0, close_, &vars);// закрывает окно на крестик, но сегается
 	mlx_hook(vars.win, 2, 1L << 0, close_, &vars);// закрывает окно на esc

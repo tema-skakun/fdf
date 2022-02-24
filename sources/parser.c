@@ -3,14 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:31:34 by jg                #+#    #+#             */
-/*   Updated: 2022/02/21 19:26:11 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:21:02 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
+
+static int	find_chr(const char *s, int c)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		if (s[i] == (char)c)
+			return (i);
+	if (s[i] == (char)c)
+		return (i);
+	return (-1);
+}
+
+static size_t	ft_strlen_base(const char *str, int *f)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= 97 && str[i] <= 102)
+			*f = 1;
+		i++;
+	}
+	return (i);
+}
+
+unsigned int	ft_atoh(const char *str)
+{
+	int				i;
+	int				a;
+	int				len;
+	unsigned int	res;
+	char			*base;
+
+	i = 0;
+	res = 0;
+	a = 0;
+	base = "0123456789ABCDEF";
+	len = ft_strlen_base(&str[i], &a);
+	if (a)
+		base = "0123456789abcdef";
+	a = find_chr(base, str[i]);
+	if (a != -1)
+	{
+		while (len--)
+		{
+			a = find_chr(base, str[i++]);
+			res += pow(16, len) * a;
+		}
+	}
+	return (res);
+}
+
+// unsigned int	ft_atoh(const char *str)
+// {
+// 	a
+// }
 
 void	print_map(t_data *data)//удалить ф-цию перед финальным коммитом
 {
@@ -22,8 +81,8 @@ void	print_map(t_data *data)//удалить ф-цию перед финальн
 		j = 0;
 		while (j < data->col)
 		{
-			printf("x = %d, y = %d, z = %d;	", data->map[i][j].x, \
-			data->map[i][j].y, data->map[i][j].z);
+			printf("x %d, y %d, rgb %d;	", data->map[i][j].x, \
+			data->map[i][j].y, data->map[i][j].rgb);
 			j++;
 		}
 		printf("\n");
@@ -36,8 +95,8 @@ int	find_step(int str, int col)
 	int	s1;
 	int	s2;
 
-	s1 = (1000 - 50) / (col);
-	s2 = (600 - 50) / (str);
+	s1 = (1000 - 20) / (col);
+	s2 = (600 - 20) / (str);
 	if (s1 < s2)
 		return (s1);
 	else
@@ -51,7 +110,7 @@ void	calculate_xy(t_data *data)
 	int	j;
 
 	step = find_step(data->str, data->col);
-	printf("step = %d\n", step);
+	// printf("step = %d\n", step);
 	i = data->str;
 	while (--i + 1)//заполню координаты X и Y
 	{
@@ -72,14 +131,13 @@ void	write_z_to_map(t_map *map, char **points)
 	int	p;
 
 	i = 0;
-	p = 0;
 	while (points[i])
 	{
+		p = 0;
 		map[i].z = ft_atoi(points[i], &p);
-		map[i].rgb = 16776960;// white color
+		map[i].rgb = 0x00FFFFFF;// white color
 		if (p)// в p лежит указатель на запятую в points
-			map[i].rgb = 10005000;// написать программу для обработки цветов
-			// но прежде надо разобраться как библиотека mlx принимает цвета
+			map[i].rgb = ft_atoh(points[i] + p + 3);
 		i++;
 	}
 }
@@ -127,7 +185,5 @@ int	parser(char *av, t_data *data)
 	if (close(fd) == -1)
 		ft_errors(3);
 	calculate_xy(data);
-	print_map(data);
-	ft_free_data(data);
 	return (0);
 }

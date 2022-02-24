@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 19:09:54 by jg                #+#    #+#             */
-/*   Updated: 2022/02/21 14:20:19 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:17:39 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ char	*ft_line(char *rem)
 	line = (char *)ft_calloc(i + 2, sizeof(char));
 	if (line == NULL)
 		return (NULL);
-	if (rem[i] == '\n')
-		line[i] = '\n';
 	while (i)
 	{
 		i--;
