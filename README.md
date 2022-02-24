@@ -29,6 +29,7 @@ and, most important, how to see the scene from a specific viewpoint.
 Your program has to represent the model in isometric projection.
 The coordinates of the landscape are stored in a .fdf file passed as a parameter to
 your program. Here is an example:
+
 ![alt text](https://github.com/tema-skakun/fdf/blob/214aefdc1b6bcbe4f7ccef914b3caf478b569012/Screenshot%202022-02-24%20at%2007.16.31.png) 
 
 Each number represents a point in space:
