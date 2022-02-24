@@ -44,5 +44,5 @@ Executing your fdf program using the example file 42.fdf:
 
 Should render a landscape similar to:
 
-[alt text]('Screenshot 2022-02-24 at 07.17.51.png' "42")
+![alt text]('Screenshot 2022-02-24 at 07.17.51.png' "42")
 
