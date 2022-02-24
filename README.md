@@ -33,6 +33,7 @@ your program. Here is an example:
 ![alt text](Screenshot 2022-02-24 at 07.16.31.png  "")
 https://github.com/tema-skakun/fdf/blob/214aefdc1b6bcbe4f7ccef914b3caf478b569012/Screenshot%202022-02-24%20at%2007.16.31.png
 Screenshot 2022-02-24 at 07.16.31.png
+![Image alt](Screenshot 2022-02-24 at 07.16.31.png)
 
 Each number represents a point in space:
 • The horizontal position corresponds to its axis.
@@ -40,9 +41,13 @@ Each number represents a point in space:
 • The value corresponds to its altitude.
 Executing your fdf program using the example file 42.fdf:
 
+![Image alt](https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png)
+
 ![alt text](Screenshot 2022-02-24 at 07.17.07.png  "")
 
 Should render a landscape similar to:
+
+![Image alt](https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png)
 
 ![alt text]('Screenshot 2022-02-24 at 07.17.51.png' "42")
 
