@@ -29,12 +29,6 @@ and, most important, how to see the scene from a specific viewpoint.
 Your program has to represent the model in isometric projection.
 The coordinates of the landscape are stored in a .fdf file passed as a parameter to
 your program. Here is an example:
-
-![alt text](Screenshot 2022-02-24 at 07.16.31.png  "")
-https://github.com/tema-skakun/fdf/blob/214aefdc1b6bcbe4f7ccef914b3caf478b569012/Screenshot%202022-02-24%20at%2007.16.31.png
-Screenshot 2022-02-24 at 07.16.31.png
-![Image alt](https://github.com/tema-skakun/fdf/raw/master/Screenshot 2022-02-24 at 07.16.31.png)
-
 ![alt text](https://github.com/tema-skakun/fdf/blob/214aefdc1b6bcbe4f7ccef914b3caf478b569012/Screenshot%202022-02-24%20at%2007.16.31.png) 
 
 Each number represents a point in space:
@@ -43,13 +37,9 @@ Each number represents a point in space:
 • The value corresponds to its altitude.
 Executing your fdf program using the example file 42.fdf:
 
-![Image alt](https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png)
-
-![alt text](Screenshot 2022-02-24 at 07.17.07.png  "")
+![alt text](Screenshot 2022-02-24 at 07.17.07.png) 
 
 Should render a landscape similar to:
 
-![Image alt](https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png)
-
-![alt text]('Screenshot 2022-02-24 at 07.17.51.png' "42")
+![alt text](https://github.com/tema-skakun/fdf/blob/214aefdc1b6bcbe4f7ccef914b3caf478b569012/Screenshot%202022-02-24%20at%2007.16.31.png) 
 
