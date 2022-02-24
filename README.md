@@ -29,14 +29,15 @@ and, most important, how to see the scene from a specific viewpoint.
 Your program has to represent the model in isometric projection.
 The coordinates of the landscape are stored in a .fdf file passed as a parameter to
 your program. Here is an example:
+![alt text](Screenshot 2022-02-24 at 07.16.31.png  "")
 
 Each number represents a point in space:
 • The horizontal position corresponds to its axis.
 • The vertical position corresponds to its ordinate.
 • The value corresponds to its altitude.
 Executing your fdf program using the example file 42.fdf:
- fdf/Screenshot 2022-02-24 at 07.16.31.png 
+![alt text](Screenshot 2022-02-24 at 07.17.07.png  "")
 
 Should render a landscape similar to:
-
+![alt text](Screenshot 2022-02-24 at 07.17.51.png  "")
 
