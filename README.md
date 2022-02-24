@@ -37,9 +37,8 @@ Each number represents a point in space:
 • The value corresponds to its altitude.
 Executing your fdf program using the example file 42.fdf:
 
-![alt text](Screenshot 2022-02-24 at 07.17.07.png) 
+![alt text](https://github.com/tema-skakun/fdf/blob/b0041d2f729c64ba971d4d8d6cab613e89c9dd2c/Screenshot%202022-02-24%20at%2007.17.07.png) 
 
 Should render a landscape similar to:
 
-![alt text](https://github.com/tema-skakun/fdf/blob/214aefdc1b6bcbe4f7ccef914b3caf478b569012/Screenshot%202022-02-24%20at%2007.16.31.png) 
-
+![alt text](https://github.com/tema-skakun/fdf/blob/578e959c357ba34e6b2295cece46c7670c28561a/Screenshot%202022-02-24%20at%2007.17.51.png) 
