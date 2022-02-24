@@ -33,7 +33,7 @@ your program. Here is an example:
 ![alt text](Screenshot 2022-02-24 at 07.16.31.png  "")
 https://github.com/tema-skakun/fdf/blob/214aefdc1b6bcbe4f7ccef914b3caf478b569012/Screenshot%202022-02-24%20at%2007.16.31.png
 Screenshot 2022-02-24 at 07.16.31.png
-![Image alt](https://github.com/tema-skakun/fdf/raw/master/fdf/Screenshot 2022-02-24 at 07.16.31.png)
+![Image alt](https://github.com/tema-skakun/fdf/raw/master/Screenshot 2022-02-24 at 07.16.31.png)
 
 Each number represents a point in space:
 • The horizontal position corresponds to its axis.
