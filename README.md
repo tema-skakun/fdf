@@ -35,6 +35,7 @@ Each number represents a point in space:
 • The vertical position corresponds to its ordinate.
 • The value corresponds to its altitude.
 Executing your fdf program using the example file 42.fdf:
+ fdf/Screenshot 2022-02-24 at 07.16.31.png 
 
 Should render a landscape similar to:
 
