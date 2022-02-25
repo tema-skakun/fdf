@@ -6,7 +6,7 @@
 /*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:03 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/21 19:54:56 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/25 22:26:32 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # include "../libft/libft.h"
 
+# define ZOOM 1
+
 typedef struct s_vars
 {
 	void	*mlx;
@@ -31,10 +33,10 @@ typedef struct s_vars
 
 typedef struct s_map
 {
-	int	x;
-	int	y;
-	int	z;
-	int	rgb;
+	float	x;
+	float	y;
+	int		z;
+	int		rgb;
 }				t_map;
 
 typedef struct s_data {

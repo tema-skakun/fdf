@@ -6,7 +6,7 @@
 #    By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/15 15:51:18 by fdarkhaw          #+#    #+#              #
-#    Updated: 2022/02/21 19:24:24 by fdarkhaw         ###   ########.fr        #
+#    Updated: 2022/02/25 22:12:30 by fdarkhaw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,6 @@ NAME		= fdf
 INC_DIR		= ./includes/
 LIBFT_DIR	= ./libft/
 LIBFT		= libft.a
-
-# INC_MINILIBX = -I minilibx
-# LINK_MINILIBX = -L minilibx -lmlx
-# MINILIBX = $(INC_MINILIBX) $(LINK_MINILIBX)
-# MINILIBX = ./minilibx/libmlx.a
 
 SRCS		=	./sources/main.c\
 				./sources/validation_check.c\

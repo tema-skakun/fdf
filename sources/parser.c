@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:31:34 by jg                #+#    #+#             */
-/*   Updated: 2022/02/23 14:21:02 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/25 22:02:32 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static size_t	ft_strlen_base(const char *str, int *f)
 	return (i);
 }
 
-unsigned int	ft_atoh(const char *str)
+unsigned int	ft_htoi(const char *str)
 {
 	int				i;
 	int				a;
@@ -66,11 +66,6 @@ unsigned int	ft_atoh(const char *str)
 	return (res);
 }
 
-// unsigned int	ft_atoh(const char *str)
-// {
-// 	a
-// }
-
 void	print_map(t_data *data)//удалить ф-цию перед финальным коммитом
 {
 	int		i, j;
@@ -81,7 +76,7 @@ void	print_map(t_data *data)//удалить ф-цию перед финальн
 		j = 0;
 		while (j < data->col)
 		{
-			printf("x %d, y %d, rgb %d;	", data->map[i][j].x, \
+			printf("x %f, y %f, rgb %d;	", data->map[i][j].x, \
 			data->map[i][j].y, data->map[i][j].rgb);
 			j++;
 		}
@@ -90,37 +85,21 @@ void	print_map(t_data *data)//удалить ф-цию перед финальн
 	}
 }
 
-int	find_step(int str, int col)
-{
-	int	s1;
-	int	s2;
-
-	s1 = (1000 - 20) / (col);
-	s2 = (600 - 20) / (str);
-	if (s1 < s2)
-		return (s1);
-	else
-		return (s2);
-}
-
-void	calculate_xy(t_data *data)
+void	get_xy(t_data *data)
 {
 	int	step;
 	int	i;
 	int	j;
 
-	step = find_step(data->str, data->col);
-	// printf("step = %d\n", step);
+	step = 1;
 	i = data->str;
 	while (--i + 1)//заполню координаты X и Y
 	{
 		j = data->col;
 		while (--j + 1)
 		{
-			data->map[i][j].y = step * (i + 1) + 300\
-			- (step * (data->str + 1) / 2);// 300 половина высоты окна
-			data->map[i][j].x = step * (j + 1) + 500\
-			- (step * (data->str + 1) / 2);// 500 половина ширины окна
+			data->map[i][j].y = step * (i);
+			data->map[i][j].x = step * (j);
 		}
 	}
 }
@@ -137,7 +116,7 @@ void	write_z_to_map(t_map *map, char **points)
 		map[i].z = ft_atoi(points[i], &p);
 		map[i].rgb = 0x00FFFFFF;// white color
 		if (p)// в p лежит указатель на запятую в points
-			map[i].rgb = ft_atoh(points[i] + p + 3);
+			map[i].rgb = ft_htoi(points[i] + p + 3);
 		i++;
 	}
 }
@@ -166,7 +145,7 @@ void	points_parser(int fd, t_data *data)
 		}
 		write_z_to_map(data->map[i], points);
 		ft_free(points);
-		i++;//перешёл на следующую строку
+		i++;
 	}
 }
 
@@ -184,6 +163,7 @@ int	parser(char *av, t_data *data)
 	points_parser(fd, data);
 	if (close(fd) == -1)
 		ft_errors(3);
-	calculate_xy(data);
+	get_xy(data);
+	// print_map(data);
 	return (0);
 }
