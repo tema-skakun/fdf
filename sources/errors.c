@@ -6,7 +6,7 @@
 /*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 20:30:54 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/21 18:05:43 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/26 23:08:30 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,34 @@ void	ft_free_data(t_data *data)
 			free(data->map[i++]);
 		free(data->map);
 	}
+}
+
+void	move(int key, t_data *data)
+{
+	if (key == 123)
+		data->shift_x -= 10;
+	if (key == 124)
+		data->shift_x += 10;
+	if (key == 125)
+		data->shift_y += 10;
+	if (key == 126)
+		data->shift_y -= 10;
+}
+
+int	close_win(int keycode, t_data *data)
+{
+	if (keycode == 53)
+		exit (0);
+	if (keycode >= 123 || keycode <= 126)
+	{
+		move(keycode, data);
+		printf("%d\n", keycode);
+		// mlx_clear_window(data->vars.mlx, data->vars.win);
+		draw(data);
+	}
+	if (keycode >= 0 && keycode <= 273)
+		keycode++;
+	else
+		exit (0);
+	return (0);
 }

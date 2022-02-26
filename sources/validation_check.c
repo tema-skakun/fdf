@@ -6,43 +6,11 @@
 /*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:03:16 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/21 18:29:34 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/26 22:58:44 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-// void	ft_free(char **p_str)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (p_str != NULL)
-// 	{
-// 		while (p_str[i])
-// 			free(p_str[i++]);
-// 		free(p_str);
-// 	}
-// }
-
-// int	ft_getnbr(char *str)
-// {
-// 	size_t	i;
-// 	int		result;
-
-// 	result = 0;
-// 	i = 0;
-// 	if (str[i] == '-' || str[i] == '+')
-// 		i++;
-// 	while ((str[i] >= '0') && (str[i] <= '9'))
-// 	{
-// 		result = (result * 10) + (str[i] - '0');
-// 		i++;
-// 	}
-// 	if (str[0] == '-')
-// 		result = result * (-1);
-// 	return (result);
-// }
 
 int	len_space(char *str)
 {
@@ -73,10 +41,12 @@ int	check_strings(int fd, t_data *data)
 
 	line = get_next_line(fd);
 	len[0] = len_space(line);
-	free(line);
+	len[1] = 0;// додумать логику парсера при чистой карте
 	len[2] = 1;
+	free(line);
 	while (1)
 	{
+		data->col = 0;
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
@@ -85,9 +55,9 @@ int	check_strings(int fd, t_data *data)
 		len[2]++;
 		if (len[0] != len[1])
 			return (1);
-		data->col = len[1];//посчитал кол-во  столбцов
-		data->str = len[2];//посчитал кол-во  строк
 	}
+	data->col = len[1];
+	data->str = len[2];
 	return (0);
 }
 
