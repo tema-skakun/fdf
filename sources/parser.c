@@ -3,30 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:31:34 by jg                #+#    #+#             */
-/*   Updated: 2022/02/26 22:53:46 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/27 21:52:57 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	get_zoom_z(t_data *data)
+{
+	int	min_z;
+	int	max_z;
+	int	iterator[2];
+
+	max_z = -2147483648;
+	min_z = 2147483647;
+	iterator[0] = 0;
+	while (iterator[0] < data->str)
+	{
+		iterator[1] = 0;
+		while (iterator[1] < data->col)
+		{
+			if (min_z > data->map[iterator[0]][iterator[1]].z)
+				min_z = data->map[iterator[0]][iterator[1]].z;
+			if (max_z < data->map[iterator[0]][iterator[1]].z)
+				max_z = data->map[iterator[0]][iterator[1]].z;
+			iterator[1]++;
+		}
+		iterator[0]++;
+	}
+	data->zoom_z = max_z - min_z;
+	if (data->zoom_z > 20)
+		data->zoom_z = 1;
+}
+
 void	get_xy(t_data *data)
 {
-	float	step;
 	int		i;
 	int		j;
 
-	step = 1;
 	i = data->str;
 	while (--i + 1)
 	{
 		j = data->col;
 		while (--j + 1)
 		{
-			data->map[i][j].y = step * (i);
-			data->map[i][j].x = step * (j);
+			data->map[i][j].y = (float)i;
+			data->map[i][j].x = (float)j;
 		}
 	}
 }
@@ -89,5 +114,6 @@ int	parser(char *av, t_data *data)
 	if (close(fd) == -1)
 		ft_errors(3);
 	get_xy(data);
+	get_zoom_z(data);
 	return (0);
 }

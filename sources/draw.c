@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 12:55:51 by jg                #+#    #+#             */
-/*   Updated: 2022/02/26 23:06:02 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/27 22:27:32 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,16 @@ void	find_zoom(t_data *data)
 	int	z1;
 	int	z2;
 
-	z1 = (WIDTH) / (data->col);
-	z2 = (HEIGHT) / (data->str);
-	z1 = (int)fminf((float)z1, (float)z2);
-	data->zoom = z1;
+	z1 = 0;
+	z2 = 0;
+	if (data->col != 0)
+		z1 = (WIDTH) / (data->col);
+	if (data->str != 0)
+		z2 = (HEIGHT) / (data->str);
+	data->zoom = (int)fminf((float)z1, (float)z2);
 	if ((float)data->col / (float)data->str > 1.5)
-		data->zoom -= 30;
+		data->zoom -= 20;
+	// data->zoom = 20;
 }
 
 void	draw(t_data *data)
@@ -85,9 +89,14 @@ void	draw(t_data *data)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 									&data->line_length, &data->endian);
 	mlx_clear_window(data->vars.mlx, data->vars.win);
-	find_zoom(data);
-	draw_str(data);
-	draw_col(data);
+	if (data->col != 1 || data->str != 1)
+	{
+		draw_str(data);
+		draw_col(data);
+	}
+	else
+		my_mlx_pixel_put(data, data->shift_x, data->shift_y, \
+		data->map[0][0].rgb);
 	mlx_put_image_to_window(data->vars.mlx, data->vars.win, data->img, 0, 0);
 	mlx_destroy_image(data->vars.mlx, data->img);
 }

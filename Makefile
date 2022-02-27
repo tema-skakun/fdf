@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+         #
+#    By: jg <jg@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/15 15:51:18 by fdarkhaw          #+#    #+#              #
-#    Updated: 2022/02/26 23:07:25 by fdarkhaw         ###   ########.fr        #
+#    Updated: 2022/02/27 13:54:07 by jg               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,14 @@ LIBFT		= libft.a
 
 SRCS		=	./sources/main.c\
 				./sources/validation_check.c\
-				./sources/errors.c\
+				./sources/errors_and_free.c\
 				./sources/get_next_line.c\
 				./sources/get_next_line_utils.c\
 				./sources/parser.c\
 				./sources/parser_color.c\
 				./sources/draw.c\
 				./sources/draw_utils.c\
+				./sources/image_manag.c\
 				
 		
 OBJ			= $(SRCS:.c=.o)
@@ -43,7 +44,7 @@ all			: $(NAME)
 $(NAME)		: $(OBJ)
 		make -C $(LIBFT_DIR)
 		make bonus -C $(LIBFT_DIR)
-		$(CC) $(OBJ) -Iminilibx_macos -lmlx -framework OpenGL -framework AppKit\
+		$(CC) $(OBJ) -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit\
 		-o $(NAME) $(LIBFT_DIR)$(LIBFT)
 		
 clean:

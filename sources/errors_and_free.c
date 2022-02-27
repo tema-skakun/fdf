@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   errors_and_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 20:30:54 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/26 23:08:30 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/27 15:37:07 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int	ft_errors(int i)
 		ft_putendl_fd("Found wrong line length. Exiting.", 2);
 	else if (i == 3)
 		perror("Error");
+	else if (i == 4)
+		ft_putendl_fd("The first line in the file is empty. Exiting.", 2);
+	else if (i == 5)
+		ft_putendl_fd("The file is empty. Exiting.", 2);
 	exit (1);
 }
 
@@ -50,34 +54,4 @@ void	ft_free_data(t_data *data)
 			free(data->map[i++]);
 		free(data->map);
 	}
-}
-
-void	move(int key, t_data *data)
-{
-	if (key == 123)
-		data->shift_x -= 10;
-	if (key == 124)
-		data->shift_x += 10;
-	if (key == 125)
-		data->shift_y += 10;
-	if (key == 126)
-		data->shift_y -= 10;
-}
-
-int	close_win(int keycode, t_data *data)
-{
-	if (keycode == 53)
-		exit (0);
-	if (keycode >= 123 || keycode <= 126)
-	{
-		move(keycode, data);
-		printf("%d\n", keycode);
-		// mlx_clear_window(data->vars.mlx, data->vars.win);
-		draw(data);
-	}
-	if (keycode >= 0 && keycode <= 273)
-		keycode++;
-	else
-		exit (0);
-	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:25:31 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/26 21:07:15 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/27 21:49:13 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	bresenham(float *x, float *y, int *z, t_data *data)
 
 	color = data->map[(int)y[0]][(int)x[0]].rgb;
 	aplly_zoom(x, y, data->zoom);
-	isometric(&x[0], &y[0], z[0] * ZOOM_Z);
-	isometric(&x[1], &y[1], z[1] * ZOOM_Z);
+	isometric(&x[0], &y[0], z[0] * data->zoom_z);
+	isometric(&x[1], &y[1], z[1] * data->zoom_z);
 	aplly_shift(x, y, data);
 	delta_x = x[1] - x[0];
 	delta_y = y[1] - y[0];

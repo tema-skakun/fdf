@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:03 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/26 21:57:56 by fdarkhaw         ###   ########.fr       */
+/*   Updated: 2022/02/27 22:27:56 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define ZOOM_Z 1
 
 typedef struct s_vars
 {
@@ -51,9 +50,7 @@ typedef struct s_data {
 	int		zoom;
 	int		shift_x;
 	int		shift_y;
-	void	*mlx;
-	void	*win;
-	int		flag;
+	int		zoom_z;
 	t_map	**map;
 	t_vars	vars;
 }				t_data;
@@ -66,10 +63,13 @@ int				parser(char *av, t_data *data);
 unsigned int	ft_htoi(const char *str);
 int				len_space(char *str);
 void			draw(t_data *data);
-int				close_win(int keycode, t_data *data);
+int				image_manag(int keycode, t_data *data);
 char			*ft_strjoin_gnl(char *s1, char const *s2);
 char			*ft_strcpy(char *dest, char *src);
 char			*get_next_line(int fd);
 void			bresenham(float *x, float *y, int *z, t_data *data);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void			find_zoom(t_data *data);
+void			ft_free_data(t_data *data);
 
 #endif
