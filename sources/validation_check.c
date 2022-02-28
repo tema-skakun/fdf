@@ -6,7 +6,7 @@
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:03:16 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/27 15:36:37 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/28 14:21:24 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ int	check_strings(int fd, t_data *data)
 	int		len[3];
 
 	line = get_next_line(fd);
-	if (!line)// если файл пустой
+	if (!line)
 		ft_errors(5);
-	len[0] = len_space(line);// колво столбцов первой строки
+	len[0] = len_space(line);
 	free(line);
-	if (len[0] == 0)// если первая строка пустая
-		ft_errors(4);
 	len[1] = 0;
-	len[2] = 1;// кол-во строк
+	len[2] = 1;
 	while (1)
 	{
 		data->col = 0;

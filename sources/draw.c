@@ -6,7 +6,7 @@
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 12:55:51 by jg                #+#    #+#             */
-/*   Updated: 2022/02/27 22:27:32 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/28 14:15:30 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	find_zoom(t_data *data)
 	data->zoom = (int)fminf((float)z1, (float)z2);
 	if ((float)data->col / (float)data->str > 1.5)
 		data->zoom -= 20;
-	// data->zoom = 20;
 }
 
 void	draw(t_data *data)

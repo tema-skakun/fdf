@@ -6,7 +6,7 @@
 /*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:03 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/27 22:27:56 by jg               ###   ########.fr       */
+/*   Updated: 2022/02/28 14:37:10 by jg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data {
 	int		shift_x;
 	int		shift_y;
 	int		zoom_z;
+	int		iso;
 	t_map	**map;
 	t_vars	vars;
 }				t_data;
