@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jg <jg@student.42.fr>                      +#+  +:+       +#+         #
+#    By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/15 15:51:18 by fdarkhaw          #+#    #+#              #
-#    Updated: 2022/02/27 13:54:07 by jg               ###   ########.fr        #
+#    Updated: 2022/03/02 12:17:58 by fdarkhaw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,12 @@ CC			= cc
 all			: $(NAME)
 
 %.o : %.c
-		$(CC) $(CFLAGS) -Iminilibx_macos -I $(INC_DIR) -c $< -o $@ -MD
+		$(CC) $(CFLAGS) -I minilibx_macos -I $(INC_DIR) -c $< -o $@ -MD
 
 $(NAME)		: $(OBJ)
 		make -C $(LIBFT_DIR)
 		make bonus -C $(LIBFT_DIR)
-		$(CC) $(OBJ) -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit\
+		$(CC) $(OBJ) -L minilibx_macos -lmlx -framework OpenGL -framework AppKit\
 		-o $(NAME) $(LIBFT_DIR)$(LIBFT)
 		
 clean:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jg <jg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: fdarkhaw <fdarkhaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 14:25:31 by fdarkhaw          #+#    #+#             */
-/*   Updated: 2022/02/28 15:09:52 by jg               ###   ########.fr       */
+/*   Updated: 2022/03/02 12:02:10 by fdarkhaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,31 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void	bresenham(float *x, float *y, int *z, t_data *data)
 {
+	float	max;
+	int		color;
+
+	color = data->map[(int)y[0]][(int)x[0]].rgb;
+	aplly_zoom(x, y, data->zoom);
+	if (data->iso == 0)
+	{
+		isometric(&x[0], &y[0], z[0] * data->zoom_z);
+		isometric(&x[1], &y[1], z[1] * data->zoom_z);
+	}
+	aplly_shift(x, y, data);
+	max = fmaxf(fabsf(x[1] - x[0]), fabsf(y[1] - y[0]));
+	while ((int)(x[0] - x[1]) || (int)(y[0] - y[1]))
+	{
+		if (x[0] > WIDTH - 1 || y[0] > HEIGHT - 1 || x[0] < 0 || y[0] < 0)
+			return ;
+		my_mlx_pixel_put(data, (int)x[0], (int)y[0], color);
+		x[0] += (x[1] - x[0]) / max;
+		y[0] += (y[1] - y[0]) / max;
+	}
+}
+
+/* более быстрый bresenham но не проходит по норме
+void	bresenham(float *x, float *y, int *z, t_data *data)
+{
 	float	delta_x;
 	float	delta_y;
 	float	max;
@@ -53,8 +78,11 @@ void	bresenham(float *x, float *y, int *z, t_data *data)
 
 	color = data->map[(int)y[0]][(int)x[0]].rgb;
 	aplly_zoom(x, y, data->zoom);
-	isometric(&x[0], &y[0], z[0] * data->zoom_z);
-	isometric(&x[1], &y[1], z[1] * data->zoom_z);
+	if (data->iso == 0)
+	{
+		isometric(&x[0], &y[0], z[0] * data->zoom_z);
+		isometric(&x[1], &y[1], z[1] * data->zoom_z);
+	}
 	aplly_shift(x, y, data);
 	delta_x = x[1] - x[0];
 	delta_y = y[1] - y[0];
@@ -63,10 +91,11 @@ void	bresenham(float *x, float *y, int *z, t_data *data)
 	delta_y /= max;
 	while ((int)(x[0] - x[1]) || (int)(y[0] - y[1]))
 	{
-		if (x[0] > WIDTH || y[0] > HEIGHT || x[0] < 0 || y[0] < 0)
+		if (x[0] > WIDTH - 1 || y[0] > HEIGHT - 1 || x[0] < 0 || y[0] < 0)
 			return ;
 		my_mlx_pixel_put(data, (int)x[0], (int)y[0], color);
 		x[0] += delta_x;
 		y[0] += delta_y;
 	}
 }
+*/
