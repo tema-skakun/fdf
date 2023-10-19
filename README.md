@@ -1,5 +1,7 @@
 # fdf
 
+![my implementation](https://github.com/tema-skakun/fdf/blob/master/screenshots/fdf.gif)
+
 FDF is short for ’fil de fer’ in French which means ’wireframe
 model’.
 
